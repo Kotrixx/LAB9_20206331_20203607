@@ -1,11 +1,31 @@
 package pe.edu.pucp.tel131lab9.bean;
 
+import java.sql.Timestamp;
+
 public class Post {
     private int postId;
     private String title;
     private String content;
     private int employeeId;
     private Employee employee;
+    private Timestamp datetime;
+    private Comment comment;
+
+    public Timestamp getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(Timestamp datetime) {
+        this.datetime = datetime;
+    }
+
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
+    }
 
     public Employee getEmployee() {
         return employee;
