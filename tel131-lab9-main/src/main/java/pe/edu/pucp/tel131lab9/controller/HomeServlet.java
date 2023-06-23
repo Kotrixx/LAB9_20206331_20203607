@@ -46,7 +46,7 @@ public class HomeServlet extends HttpServlet {
                     resp.sendRedirect("");
                 } else {
                     req.setAttribute("textoBusqueda", textoBuscar);
-                    req.setAttribute("listaPost", postDao.searchPost(textoBuscar));
+                    req.setAttribute("posts", postDao.searchPost(textoBuscar));
                     RequestDispatcher view = req.getRequestDispatcher("home.jsp");
                     view.forward(req, resp);
                 }
