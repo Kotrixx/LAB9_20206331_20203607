@@ -14,14 +14,25 @@ import java.io.IOException;
 public class HomeServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher view;
+        String action = req.getParameter("action") == null ? "lista" : req.getParameter("action");
 
         PostDao postDao = new PostDao();
 
-        request.setAttribute("posts", postDao.listPosts());
-        view = request.getRequestDispatcher("home.jsp");
-        view.forward(request, response);
+
+        switch (action){
+            case "lista":
+                req.setAttribute("posts", postDao.listPosts());
+                view = req.getRequestDispatcher("home.jsp");
+                view.forward(req, resp);
+                break;
+            case "new":
+                view = req.getRequestDispatcher("employees/newPost.jsp");
+                view.forward(req, resp);
+        }
+
+
     }
 
     @Override
