@@ -2,6 +2,8 @@
 <%@ page import="pe.edu.pucp.tel131lab9.bean.Post" %>
 <jsp:useBean id="posts" type="java.util.ArrayList<pe.edu.pucp.tel131lab9.bean.Post>" scope="request"/>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
+<jsp:useBean id="userSession" scope="session" type="pe.edu.pucp.tel131lab9.dto.EmployeeDto"
+             class="pe.edu.pucp.tel131lab9.dto.EmployeeDto"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +21,10 @@
             <h1>Home</h1>
         </div>
         <div class="col-md-5 col-lg-4 ms-auto my-auto text-md-end">
-            <a href="<%= request.getContextPath()%>/PostServlet?action=new" class="btn btn-primary">New Post</a>
+
+            <% if (userSession.getEmployeeId() > 0) { %>
+                <a href="<%= request.getContextPath()%>/PostServlet?action=new" class="btn btn-primary">New Post</a>
+            <%}%>
         </div>
     </div>
     <div class="row">
